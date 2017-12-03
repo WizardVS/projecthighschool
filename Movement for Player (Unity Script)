@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour {
         // if you press "D" then
         if (Input.GetKey("d"))
         {
-            // add force to the Rigidbody (Player) on x= - MS * Optimization (right movement on x)
+            // add force to the Rigidbody (Player) on x= MS * Optimization (right movement on x)
             rb.AddForce(new Vector2(MS * Time.deltaTime, 0), ForceMode2D.Force);
         }
     }
