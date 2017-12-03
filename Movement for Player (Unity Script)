@@ -41,27 +41,27 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    // shortcut Rigidbody of the Player
+    // |line 8| shortcut Rigidbody of the Player 
     // Rigidbody adds to an object gravity, velocity, forces and so on, there is 3 types of Rigidbodies
     // Dynamic: is affected by gravity, velocity and forces
     // Kynetic: not affected by Gravity, but only by velocity and forces, just how you are in space and you push an object
     // Static: not affected by anything, it's just... static (good for using with collisions)
     
     
-    // Moving Speed Variable, you can change it in the  Object's Settings
+    // |line 10| Moving Speed Variable, you can change it in the  Object's Settings
     
     
-    // Jumping Velocity Variable, you can change it in the Object's Settings
+    // |line 12| Jumping Velocity Variable, you can change it in the Object's Settings
     
-    // in the FixedUpdate void is used for optimization
+    // |line 14| in the FixedUpdate void is used for optimization
     // Time.deltaTime is a way to make every computer see the same thing for example some computers see 10 speed but you see 20 because you computer is better, this optimized it for every slow PC or fast to see the same Speed
     
     
-    // add force to the Rigidbody (Player) on x= - MS * Optimization (left movement on x)
+    // |line 17| add force to the Rigidbody (Player) on x= - MS * Optimization (left movement on x)
     
     
     
-    // OnCollisionStay: is when you are colliding with a GameObject and are staying with that Collision 
+    // |line 25 & 33| OnCollisionStay: is when you are colliding with a GameObject and are staying with that Collision 
     //* for example you are on the Ground, this fuction detects that you are still colliding with the ground
     // but OnCollisionEnter: is when you are colliding with a GameObject once, when you touch it it does the following: { // Code }
     // and OnCollisionExit: is when you are exiting a collision with an item, it detects that you are colliding but it will do the { //Code }
@@ -70,11 +70,11 @@ public class PlayerMovement : MonoBehaviour
     // Collision(2D) is just for asking for information on a specific collision for example, tags, names, numbers etc
     // * the 2D is also the same for Collision, only for 2D Objects with 2D Collision Boxes
     
-    // if you are colliding with "Ground" and pressing Space (KeyCode is only used for Tab,Ctrl, etc) and also if the object has a bigger or equal velocity then 0
+    // |line 27| if you are colliding with "Ground" and pressing Space (KeyCode is only used for Tab,Ctrl, etc) and also if the object has a bigger or equal velocity then 0
     
-    // then add Velocity upwards (-Vector2.up if you want downwards) * Jump * Optimization
+    // |line 29| then add Velocity upwards (-Vector2.up if you want downwards) * Jump * Optimization
     
     
-    //if you collide at the specific moment with Ground you velocity on y axis will be 0
+    // |line 35| if you collide at the specific moment with Ground you velocity on y axis will be 0
     
-    // velocity of the player on y axis * 0 = 0, just so the player stops after he falls
+    // |line 37| velocity of the player on y axis * 0 = 0, just so the player stops after he falls
