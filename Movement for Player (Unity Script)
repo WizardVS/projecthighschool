@@ -2,33 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour 
+{
+
+    public Rigidbody2D rb;
+    
+    public float MS;
+    
+    public float Jump;
+    
+	void FixedUpdate () {
+		if (Input.GetKey("a"))
+        {
+            rb.AddForce(new Vector2(- MS * Time.deltaTime,0), ForceMode2D.Force);
+        }
+        if (Input.GetKey("d"))
+        {
+            rb.AddForce(new Vector2(MS * Time.deltaTime, 0), ForceMode2D.Force);
+        }
+    }
+    
+    void OnCollisionStay2D (Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground" && Input.GetKey(KeyCode.Space) && rb.velocity.y >= 0)
+        {
+            rb.velocity = Vector2.up * Jump * Time.deltaTime;
+        }
+    }
+    
+    void OnCollisionEnter2D (Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            rb.velocity = Vector2.up * 0;
+        }
+    }
+}
+
+
+
     // shortcut Rigidbody of the Player
     // Rigidbody adds to an object gravity, velocity, forces and so on, there is 3 types of Rigidbodies
     // Dynamic: is affected by gravity, velocity and forces
     // Kynetic: not affected by Gravity, but only by velocity and forces, just how you are in space and you push an object
     // Static: not affected by anything, it's just... static (good for using with collisions)
-    public Rigidbody2D rb;
+    
+    
     // Moving Speed Variable, you can change it in the  Object's Settings
-    public float MS;
+    
+    
     // Jumping Velocity Variable, you can change it in the Object's Settings
-    public float Jump;
+    
     // in the FixedUpdate void is used for optimization
     // Time.deltaTime is a way to make every computer see the same thing for example some computers see 10 speed but you see 20 because you computer is better, this optimized it for every slow PC or fast to see the same Speed
-	void FixedUpdate () {
-        // if you press "A" then
-		if (Input.GetKey("a"))
-        {
-            // add force to the Rigidbody (Player) on x= - MS * Optimization (left movement on x)
-            rb.AddForce(new Vector2(- MS * Time.deltaTime,0), ForceMode2D.Force);
-        }
-        // if you press "D" then
-        if (Input.GetKey("d"))
-        {
-            // add force to the Rigidbody (Player) on x= MS * Optimization (right movement on x)
-            rb.AddForce(new Vector2(MS * Time.deltaTime, 0), ForceMode2D.Force);
-        }
-    }
+    
+    
+    // add force to the Rigidbody (Player) on x= - MS * Optimization (left movement on x)
+    
+    
+    
     // OnCollisionStay: is when you are colliding with a GameObject and are staying with that Collision 
     //* for example you are on the Ground, this fuction detects that you are still colliding with the ground
     // but OnCollisionEnter: is when you are colliding with a GameObject once, when you touch it it does the following: { // Code }
@@ -37,23 +69,12 @@ public class PlayerMovement : MonoBehaviour {
     // IMPORTANT NOTE: use 2D in front of a OnCollisionX fuction so that it knows that it's colliding with a 2D Collision object not a Collision Object (which is normally 3D)
     // Collision(2D) is just for asking for information on a specific collision for example, tags, names, numbers etc
     // * the 2D is also the same for Collision, only for 2D Objects with 2D Collision Boxes
-    void OnCollisionStay2D (Collision2D collision)
-    {
-        // if you are colliding with "Ground" and pressing Space (KeyCode is only used for Tab,Ctrl, etc) and also if the object has a bigger or equal velocity then 0
-        if (collision.collider.tag == "Ground" && Input.GetKey(KeyCode.Space) && rb.velocity.y >= 0)
-        {
-            // then add Velocity upwards (-Vector2.up if you want downwards) * Jump * Optimization
-            rb.velocity = Vector2.up * Jump * Time.deltaTime;
-        }
-    }
     
-    void OnCollisionEnter2D (Collision2D collision)
-    {
-        //if you collide at the specific moment with Ground you velocity on y axis will be 0
-        if (collision.collider.tag == "Ground")
-        {
-            // velocity of the player on y axis * 0 = 0, just so the player stops after he falls
-            rb.velocity = Vector2.up * 0;
-        }
-    }
-}
+    // if you are colliding with "Ground" and pressing Space (KeyCode is only used for Tab,Ctrl, etc) and also if the object has a bigger or equal velocity then 0
+    
+    // then add Velocity upwards (-Vector2.up if you want downwards) * Jump * Optimization
+    
+    
+    //if you collide at the specific moment with Ground you velocity on y axis will be 0
+    
+    // velocity of the player on y axis * 0 = 0, just so the player stops after he falls
