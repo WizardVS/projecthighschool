@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FollowScript : MonoBehaviour {
+
+    // a public Transform is pretty much a connection between the Transformation of an Object and the script
+    // * you can pretty much code the transformation of a object like that, this is one is called Follower and you can put whatever object you want to be the follower
+    public Transform follower;
+    // Vector3's are just for 3 axis
+    public Vector3 Offset;
+	
+	// Update is called once per frame
+	void Update () {
+        // transform the position of the object with the folowers position + the offset which the offset is a Vector3 variable
+        // * Vector3 object are x,y,z so if you put an offset of of (0,0,1) you will get an object (follower) that is 1 cordonate on the z away from your object
+        // this is a pretty easy script, it's just made for the camera and stuff like that
+        transform.position = follower.position + Offset;
+	}
+}
